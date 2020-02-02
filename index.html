@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Gear Of War | Desktop WebVR Experience</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A tank shooting game">
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+    <script src="js/aframe-super-shooter-kit.min.js"></script>
+    <script src="js/aframe-look-at-component.min.js"></script>
+    <script src="js/aframe-extras.min.js"></script>
+    <script src="js/aframe-environment-component.min.js"></script>
+    <script src="js/aframe-physics-system.min.js"></script>
+    <script src="js/gow-desktop-components.js"></script>
+
+    
+
+</head>
+
+<body>
+    <a-scene id="scene" change-weapon random-position>
+
+        <a-entity environment="preset:  yavapai;"></a-entity>
+        <!-- *********************************************************************** -->
+        <!-- ************************** enviroment ********************************* -->
+        <!-- *********************************************************************** -->
+
+
+        <!-- *********************************************************************** -->
+        <!-- ************************** assets management************************** -->
+        <!-- *********************************************************************** -->
+
+        <a-assets>
+
+            <a-asset-item id="enemy01" src="/model/enemy/scene.gltf"></a-asset-item>
+            <a-asset-item id="campfire" src="/model/campfire/scene.gltf"></a-asset-item>
+            <a-asset-item id="gun" src="/model/gun/scene.gltf"></a-asset-item>
+            <a-asset-item id="gun02" src="/model/gun02/scene.gltf"></a-asset-item>
+
+
+
+            <audio id="gun01-sound" src="/sound/slimeball.wav" preload="auto"></audio>
+            <audio id="gun02-sound" src="/sound/Rifleprimary2.mp3" preload="auto"></audio>
+
+        </a-assets>
+
+
+        <!-- BULLET01 -->
+        <a-entity id="bulletTemplate01" bullet="name:bullet01" geometry="primitive: box;" scale="0.01 0.01 0.01" material="emissive: yellow;" material="emissive: yellow;">
+        </a-entity>
+
+        <!-- BULLET02 -->
+
+        <a-entity id="bulletTemplate02" bullet="name: bullet02; damagePoints: 3;" geometry="primitive:  icosahedron;  radius: 0.05" material="emissive: green;" >
+        </a-entity>
+
+        <!-- CAMPFIRE -->
+        <a-entity gltf-model="#campfire" posiition="1 0 0" animation-mixer></a-entity>
+
+
+
+        <!-- ENEMY 02 TARGET -->
+        <!--<a-entity id="enemy-a02" mixin="enemy-target" obj-model="obj:#enemy-shooter-obj; mtl:#enemy-shooter-mtl" position="0 0 0" look-at="#player-body" >
+            
+        </a-entity>
+        <a-entity id="test-enemy02" position="1 0 -3" geometry="primitive:box;" dynamic-body="shape: box; mass: 2">
+        </a-entity>
+        <a-entity id="test-enemy01" position="1 0 -5" geometry="primitive:box;" animation="property: position; to: 1 0 0; dur: 1500; easing: linear">
+        </a-entity>
+        <a-entity id="enemy-a02-gun" mixin="enemy-gun" firing-enemy="enemyID: #test-enemy" class="enemy-group" position="0 1.2 1.9" shooter>
+        </a-entity>
+        <a-entity obj-model="obj:#enemy-base-obj; mtl:#enemy-base-mtl" position="-2 -2 2"></a-entity>
+
+
+        <!-- ENEMY 01-->
+        <a-entity id="enemy" class="enemyGroup" gltf-model="#enemy01" animation-mixer="clip:enemy_walk; crossFadeDuration: .3;" target="static: false; healthPoints: 27"  hit-handler gore-handler look-at="#play-body">
+            <a-plane height="0.2" width="1.05" color="#333" position="0 2.8 0" animation="property: position; to: 0 3 0; dur: 800; loop: true; dir: alternate; easing: linear;">
+                <a-entity id="health-point" geometry="primitive: plane; height:0.16; width:1" material="emissive:yellow;" position="0 0 0.01"></a-entity>
+            </a-plane>
+        </a-entity>
+           
+        
+         <a-entity  class="enemyGroup" gltf-model="#enemy01" animation-mixer="clip:enemy_walk; crossFadeDuration: .3;" target="static: false; healthPoints: 27" hit-handler gore-handler look-at="#play-body">
+            <a-plane height="0.2" width="1.05" color="#333" position="0 2.8 0" animation="property: position; to: 0 3 0; dur: 800; loop: true; dir: alternate; easing: linear;">
+                <a-entity id="health-point" geometry="primitive: plane; height:0.16; width:1" material="emissive:yellow;" position="0 0 0.01"></a-entity>
+            </a-plane>
+        </a-entity>
+        
+        <a-entity  class="enemyGroup" gltf-model="#enemy01" animation-mixer="clip:enemy_walk; crossFadeDuration: .3;" target="static: false; healthPoints: 27" hit-handler gore-handler look-at="#play-body">
+            <a-plane height="0.2" width="1.05" color="#333" position="0 2.8 0" animation="property: position; to: 0 3 0; dur: 800; loop: true; dir: alternate; easing: linear;">
+                <a-entity id="health-point" geometry="primitive: plane; height:0.16; width:1" material="emissive:yellow;" position="0 0 0.01"></a-entity>
+            </a-plane>
+        </a-entity>
+        
+        
+        <a-entity  class="enemyGroup" gltf-model="#enemy01" animation-mixer="clip:enemy_walk; crossFadeDuration: .3;" target="static: false; healthPoints: 27" hit-handler gore-handler look-at="#play-body">
+            <a-plane height="0.2" width="1.05" color="#333" position="0 2.8 0" animation="property: position; to: 0 3 0; dur: 800; loop: true; dir: alternate; easing: linear;">
+                <a-entity id="health-point" geometry="primitive: plane; height:0.16; width:1" material="emissive:yellow;" position="0 0 0.01"></a-entity>
+            </a-plane>
+        </a-entity>
+<!--
+<a-entity model-subset="target:#enemy; name: enemy01" event-handler></a-entity>-->
+        
+
+
+<a-box position="2 0 -4" color="blue" ></a-box>
+
+
+
+        <!-- *********************************************************************** -->
+        <!-- ************************** CONTROLS | PLAYER ************************** -->
+        <!-- *********************************************************************** -->
+
+        <!-- CAMERA RIG -->
+        <a-entity id="camera-rig" rotation="0 0 0" position="0 8 2">
+            <!-- CAMERA | SHOOTER -->
+            <a-entity camera id="camera" look-controls="pointerLockEnabled: true" rotation-reader rotation="0 90 0">
+                <!-- CURSOR -->
+                <a-entity animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.01 0.01 0.01; to: 0.005 0.005 0.005" animation__mouseup="property: scale; startEvents: mouseup; easing: easeInCubic; dur: 150; to: 0.01 0.01 0.01" cursor material="color: black; shader: flat" position="0 0 -1" geometry="primitive: ring" scale="0.005 0.005 0.005"></a-entity>
+                <!-- GORE -->
+                <a-image id="gore" material="color: #FF0000; shader: flat; opacity: 0" position="0 0 -0.01" >
+                </a-image>
+
+
+
+                <!-- GUN01-->
+
+                <a-entity id="gun-wrapper01" gltf-model="/model/gun/scene.gltf" position="0.15 -0.2 -0.2" scale="0.1 0.1 0.1" rotation="0 90 0" animation__1="property: rotation; from: 0 90 0; to: 0 90 -90; enabled: false;" animation__2="property: position; from: 0.15 -0.2 -0.2; to: 0.15 -0.2 0.1; enabled: false;">
+                </a-entity>
+
+
+
+                <!-- GUN02-->
+                <a-entity id="gun-wrapper02" gltf-model="/model/gun02/scene.gltf" position="0.2 -0.1 0.1" rotation="0 -90 90" scale="0.1 0.1 0.1" animation__1="property: rotation; from: 0 -90 90; to: 0 -90 0; enabled: false" animation__2="property: position; from: 0.2 -0.1 0.1; to: 0.2 -0.1 -0.1; enabled: false;"></a-entity>
+
+
+
+                <!-- GUN-SHOOTER-->
+                <a-plane id="gun-shooter" scale="0.1 0.1 0.1" position="0.15225 -0.06 -0.1" shooter="activeBulletType: bullet01; bulletTypes: [bullet01, bullet02]" click-to-shoot visible="false" gun-animation-handler sound-handler>
+                    <a-entity id="gun-sound01" sound="src:#gun01-sound; poolSize:10"></a-entity>
+                </a-plane>
+
+            </a-entity>
+
+        </a-entity>
+   <a-entity id="play-body" geometry="primitive:cylinder" visible="false" position="0 0 2"></a-entity>
+
+
+    </a-scene>
+</body>
+
+</html>
