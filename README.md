@@ -1,8 +1,8 @@
 # Tower Defence Shooting Game
 <img width="1637" alt="screenshot01" src="https://user-images.githubusercontent.com/60069466/74183217-899b4c80-4c12-11ea-9a51-217dccd28883.png">
  
- ### Click the link to play
- https://jongtak-bae.github.io/Tower-Defence-Shooting-Game/
+ ### [Play](https://jongtak-bae.github.io/Tower-Defence-Shooting-Game/)
+
  
 This is a small shooting game based on A-Frame WebVR. 
 I created this game using the [Supermedium aframe-super-shooter-kit](https://github.com/supermedium/aframe-super-shooter-kit "Supermedium aframe-super-shooter-kit") and environment component  (https://github.com/supermedium/aframe-environment-component )as starting points, plus benscott(https://github.com/benscott/aframe-viewable-component)'s [aframe-viewable-component] and the animation-mixer component, part of aframe-extras by Don McCurdy. My inspiration comes from
