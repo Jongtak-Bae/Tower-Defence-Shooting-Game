@@ -1,37 +1,76 @@
 <!doctype html>
 <html>
-	
-<!-- ************************** CREDITS AND SPECIAL THANKS ************************** -->
-<!-- *********************** @feiss (aframe-super-shooter-kit) ********************** -->
-<!-- ************************ @andgokevin (look-at component) *********************** -->
-<!-- ****************** @dmarcos ...and all the A-Frame Community! ****************** -->
-	
+
 <head>
-	<title>Gear Of War | Desktop WebVR Experience</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="A cover-based combat game designed and coded by Danilo Pasquariello specifically for Gear VR using Samsung Internet VR | Follow me on Twitter @theDart76">
-	<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
-	<script src="js/aframe-super-shooter-kit.min.js"></script>
-	<script src="js/aframe-look-at-component.min.js"></script>
-	<script src="js/gow-desktop-components.js"></script>
+    <title>Gear Of War | Desktop WebVR Experience</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A tank shooting game">
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+    <script src="js/aframe-super-shooter-kit.min.js"></script>
+    <script src="js/aframe-look-at-component.min.js"></script>
+    <script src="js/aframe-extras.min.js"></script>
+    <script src="js/aframe-environment-component.min.js"></script>
+    <script src="js/gow-desktop-components.js"></script>
+    <script src="js/aframe-viewable-component.min.js"></script>
+
+
+
+
 </head>
 
 <body>
-	<a-scene background="color: #FFFFFF" antialias="true" reload>
-		
-<a-tube path="5 0 5, 5 0 -5, -5 0 -5" radius="0.5" material="color: red"></a-tube>
-			<!-- CAMERA | SHOOTER -->
-			<a-camera id="camera"
-					  look-controls="pointerLockEnabled: true">
-				<!-- POINTER | STANDARD CURSOR DOES NOT WORK CORRECTLY -->
-				<a-circle id="pointer" shooter click-to-shoot raycaster
-						  material="color: #000000; opacity: 0.5" radius="0.005"
-						  position="0 0 -0.9">
-				</a-circle>
-			</a-camera>
+    <a-scene>
 
-	
-		
-	</a-scene>
-</body>
-</html>
+        
+        
+
+
+        <!-- BULLET01 -->
+        <a-entity id="bulletTemplate01" bullet="name:bullet01; speed:10" geometry="primitive: box;" scale="0.01 0.01 0.01" material="emissive: yellow;" material="emissive: yellow;">
+        </a-entity>
+
+>
+
+      <a-box color="yellow"></a-box>
+
+
+
+
+        <!-- CAMERA RIG -->
+        <a-entity id="camera-rig" rotation="0 0 0" position="0 6 12">
+            <!-- CAMERA | SHOOTER -->
+            <a-entity camera id="camera" look-controls="pointerLockEnabled: true" viewable="maxpitch:90">
+                <!-- CURSOR -->
+                <a-entity animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.002 0.002 0.002; to: 0.001 0.001 0.001" animation__mouseup="property: scale; startEvents: mouseup; easing: easeInCubic; dur: 150; from: 0.001 0.001 0.001 to: 0.002 0.002 0.002" material="color: black; shader: flat" position="0 0 -0.1" geometry="primitive: ring" scale="0.001 0.001 0.001"></a-entity>
+                <!-- GORE -->
+                <a-image id="gore" material="color: #FF0000; shader: flat; opacity: 0" position="0 0 -4">
+                </a-image>
+
+
+
+                    
+                    
+
+            
+                    
+</a-entity>
+
+
+             
+
+
+                <a-plane id="gun-shooter" scale="0.1 0.1 0.1" position="0.15225 -0.06 -0.1" shooter="activeBulletType: bullet01;" click-to-shoot visible="false" gun-animation-handler sound-handler>
+                    <a-entity id="gun-sound01" sound="src:#gun01-sound; poolSize:10"></a-entity>
+                </a-plane>
+
+ 
+
+
+
+
+            </a-entity>
+           
+   <a-sky color="blue"></a-sky>
+
+    </a-scene>
+</body></html>
