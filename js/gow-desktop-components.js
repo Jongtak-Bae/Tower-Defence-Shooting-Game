@@ -664,7 +664,7 @@ AFRAME.registerComponent('gun-animation-handler', {
 
         el.addEventListener('shoot', () => {
 
-            gunWrapper.setAttribute('animation-mixer', 'clip', 'Shoot');
+            gunWrapper.setAttribute('animation-mixer', 'clip', 'fire');
             gunWrapper.setAttribute('animation-mixer', 'loop', 'once');
 
             setTimeout(() => {
